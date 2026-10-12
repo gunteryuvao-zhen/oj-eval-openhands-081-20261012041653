@@ -12,11 +12,13 @@ const int MAXN = 3005;
 // Graph representation for flow network
 int capacity[MAXN][MAXN];
 vector<int> graph[MAXN];
-int residual[MAXN][MAXN];  // Make residual global to avoid stack overflow
 
 // Edmonds-Karp algorithm for maximum flow
 int maxFlow(int source, int sink, int n) {
     int totalFlow = 0;
+    
+    // Use static array for residual graph to avoid stack overflow
+    static int residual[MAXN][MAXN];
     
     // Initialize residual graph
     for (int i = 1; i <= n; i++) {
